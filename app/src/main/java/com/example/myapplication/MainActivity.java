@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnLoudFart;
 
+    private Button btnShortFart;
+
+    private Button btnLongFart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         btnReverbFart = findViewById(R.id.btn_reverb_fart);
 
         btnLoudFart = findViewById(R.id.btn_loud_fart);
+
+        btnShortFart = findViewById(R.id.btn_short_fart);
+
+        btnLongFart= findViewById(R.id.btn_long_fart);
 
         btnFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnShortFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playShortFart();
+
+            }
+        }));
+
+        btnLongFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playLongFart();
+
+            }
+        }));
+
 
     }
 
@@ -124,6 +147,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void playLoudFart(){
         MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_loud_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playShortFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_short_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playLongFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_long_fart);
         mp.start();
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
