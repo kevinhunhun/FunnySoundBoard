@@ -16,6 +16,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnWetFart;
 
+    private Button btnReverbFart;
+
+    private Button btnLoudFart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         btnRizz = findViewById(R.id.btn_rizz);
 
         btnWetFart = findViewById(R.id.btn_wet_fart);
+
+        btnReverbFart = findViewById(R.id.btn_reverb_fart);
+
+        btnLoudFart = findViewById(R.id.btn_loud_fart);
 
         btnFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnReverbFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { playReverbFart();
+
+            }
+        }));
+
+        btnLoudFart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { playLoudFart();
+
+            }
+        });
+
     }
 
     private void playFart(){
@@ -86,6 +109,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void playReverbFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_fart_reverb);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playLoudFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_loud_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
     }
 
 
