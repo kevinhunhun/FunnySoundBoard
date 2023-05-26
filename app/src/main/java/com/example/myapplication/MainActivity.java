@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnLongFart;
 
+    private Button btnBassFart;
+
+    private Button btnSuperLongfart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
         btnShortFart = findViewById(R.id.btn_short_fart);
 
         btnLongFart= findViewById(R.id.btn_long_fart);
+
+        btnBassFart= findViewById(R.id.btn_bass_fart);
+
+        btnSuperLongfart = findViewById(R.id.btn_super_long_fart);
 
         btnFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +101,19 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
+        btnBassFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playBassfart();
+
+            }
+        }));
+
+        btnSuperLongfart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playsuperLongFart();
+
+            }
+        }));
 
     }
 
@@ -181,6 +202,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void playBassfart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_bass_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playsuperLongFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_super_long_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
     }
 
 
