@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.MediaController;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     private Button btnBassFart;
 
     private Button btnSuperLongfart;
+
+    private Button btnBombFart;
+
+    private Button btnTolietFart;
+
+    private Button btnBeanFart;
+
+    private RadioGroup radioGroupSongSelect;
+
+    private MediaPlayer mpBackTrack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +64,44 @@ public class MainActivity extends AppCompatActivity {
         btnBassFart= findViewById(R.id.btn_bass_fart);
 
         btnSuperLongfart = findViewById(R.id.btn_super_long_fart);
+
+        btnBombFart = findViewById(R.id.btn_bomb_fart);
+
+        btnTolietFart = findViewById(R.id.btn_Toilet_fart);
+
+        btnBeanFart = findViewById(R.id.btn_bean_fart);
+
+        radioGroupSongSelect = findViewById(R.id.radiogroup_songselect);
+
+        radioGroupSongSelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton radioButton = findViewById(checkedId);
+
+                if (radioButton.equals(findViewById(R.id.btnr_new_jersey_type_beat))) {
+                    mpBackTrack = MediaPlayer.create(MainActivity.this,R.raw.sound_back_track);
+                    mpBackTrack.start();
+                    mpBackTrack.setLooping(true);
+
+                }
+                /*
+                else if (option == 2) {
+                    playBeanFart();
+                }
+                else if (option == 3) {
+                    playBombFart();
+                }
+                */
+                else if (radioButton.equals(findViewById(R.id.btnr_off))) {
+                    mpBackTrack.stop();
+                    mpBackTrack.setLooping(false);
+                    mpBackTrack.release();
+                    mpBackTrack = null;
+                }
+
+
+            }
+        });
 
         btnFart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +162,27 @@ public class MainActivity extends AppCompatActivity {
         btnSuperLongfart.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {playsuperLongFart();
+
+            }
+        }));
+
+        btnBombFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playBombFart();
+
+            }
+        }));
+
+        btnTolietFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playTolietFart();
+
+            }
+        }));
+
+        btnBeanFart.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {playBeanFart();
 
             }
         }));
@@ -225,6 +297,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void playBombFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_bomb_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playTolietFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_toilet_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
+    private void playBeanFart(){
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.sound_bean_fart);
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                mp=null;
+            }
+        });
+    }
+
     }
 
 
