@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer mpBackTrack;
 
+    private MediaPlayer mpChoir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
